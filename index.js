@@ -1,3 +1,4 @@
+var util = require('util');
 var jsSHA = require('jssha');
 var moment = require('moment');
 
@@ -32,6 +33,10 @@ var getsign = function (indata ) {
 */
 
 module.exports = function(app){
+   app.get('/',function(req,res,next){
+       res.render('xirang',{issuccess:"Hello this is XiRang success"});
+   });
+
    app.get('/interface',function(req,res,next){
       var signature = req.query.signature||'';
       var timestamp = parseInt(req.query.timestamp||'0');
@@ -64,17 +69,22 @@ module.exports = function(app){
       res.render('xirang',{issuccess:"Hello success"});
    });
    app.post('/interface',function(req,res){
-      console.log("recived data");
-      console.log(req.query);
+      var indata = req.body.xml||'';
+      console.log("recive data:%s",indata);
+      if (indata){
+
+      //      res.writeHead(200, {'Content-Type': 'application/xml'});
+      res.writeHead(200, {'Content-Type': 'text/xml'});
+
       var openid = req.query.openid||'';
       if (openid && openid !=''){
-        var send = {ToUserName:openid,
-                    FromUserName:'xirang',
-                    CreateTime:moment().unix(),
-                    MsgType:'text',
-                    Content:'Welcome talk With XiRang robot!'};
+        var send = util.format('<xml><ToUserName><![CDATA[%s]]></ToUserName><FromUserName><![CDATA[%s]]></FromUserName><CreateTime>%s</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[%s]]></Content></xml>',indata.fromusername,indata.tousername,moment().unix(),'hello how are you');
         console.log(send);
-        res.send(send);
+        res.end(send);
+      }else{
+        res.send('success');
+      }
+   //     res.send(send);
       }
    });
 };
