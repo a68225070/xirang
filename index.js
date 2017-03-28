@@ -45,7 +45,7 @@ module.exports = function(app){
       if (signature ==''){
         return next();
       }
-      console.log("#### have some call from 80 port\nrecived:\n signature=%s timestamp=%s nonce=%s",signature,timestamp,nonce);
+      console.log("#### have some call from port\nrecived:\n signature=%s timestamp=%s nonce=%s",signature,timestamp,nonce);
 /*      var tmpobj = {
         token: TOKEN,
         nonce: nonce,
