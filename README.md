@@ -25,3 +25,9 @@ https://github.com/willerce/canku.git
 
 webpage
 https://github.com/licheng700/wechatOrder.git
+
+login & order
+https://github.com/jalenkjx/wechat_order.git
+
+
+https://github.com/dinghuihua/ordering_app.git
