@@ -14,6 +14,9 @@ yum -y install nodejs
 /etc/yum.repos.d/epel.repo
 node -v
 
+Express Command not found
+安装一个包npm install -g express-generator
+
 #### 1.1 Application architecture
 
 <a name="link_2" id="link_2"></a>
