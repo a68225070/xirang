@@ -70,7 +70,7 @@ function test(){
 								{
 									"type":"view",
 									"name":"加入我们",
-									"url":"http://www.baidu.com/"
+									"url":"https://115.159.161.35/"
 								}
 							]
 						}
