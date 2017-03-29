@@ -8,3 +8,10 @@ set encoding=prc
 ```
 
 https://github.com/tvrcgo/weixin-pay.git
+https://github.com/node-webot/weixin-robot.git
+
+https://github.com/ymgd/weixinopen.git
+
+https://github.com/Ravior/Ordering-System-Weixin.git
+
+https://github.com/sbabybird/WeixinOne.git
