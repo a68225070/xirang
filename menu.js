@@ -1,11 +1,13 @@
 var later = require('later');
 var https = require('https');
+var moment = require('moment');
 
 //下面部分同test_later文件
-var appid = "wx88f3e6f3f3425db2";
-var appsecret = "ae09a01a9e54d31dfb0b214b8b7e41d8";
-var access_token;
+var appid = "wxbf2730c40afd4c94";// "wx88f3e6f3f3425db2";
 
+var appsecret = "4ab3aeef54b74334c2806c99e6cf2c33";// "ae09a01a9e54d31dfb0b214b8b7e41d8";
+var access_token = "xirang";
+/*
 later.date.localTime();
 //console.log("Now:" + new Date());
 
@@ -16,10 +18,10 @@ next = later.schedule(sched).next(10);
 var timer = later.setInterval(test, sched);
 setTimeout(test, 2000);
 //到此处是later的实现
-
+*/
 
 function test(){
-	console.log(new Date());
+	console.log(moment().format('YYYY/MM/DD hh:mm:ss'));
 	var options = {
 		hostname: 'api.weixin.qq.com',//域名
 		//请求路径
@@ -33,7 +35,7 @@ function test(){
 		});
 		res.on('end',function(){//在end事件发生时
 			var body = JSON.parse(bodyChunks);//首先将服务器返回的数据转换为json格式
-			
+			console.log("收到消息");		
 			if (body.access_token){
 				access_token = body.access_token;//如果成功返回了access_token 执行判断体内的代码
 
