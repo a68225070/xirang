@@ -8,12 +8,14 @@
 
 <a name="link_1" id="link_1"></a>
 ### 1. Overview Install nodejs on centos
+```python
 https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager
+https://github.com/nodejs/node/wiki
 curl -sL https://rpm.nodesource.com/setup | bash -
 yum -y install nodejs
 /etc/yum.repos.d/epel.repo
 node -v
-
+```
 Express Command not found
 安装一个包npm install -g express-generator
 
