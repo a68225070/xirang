@@ -7,7 +7,12 @@
 * [A.2 How to restart MongoDB ](#link_a9 "restart mongodb")
 
 <a name="link_1" id="link_1"></a>
-### 1. Overview
+### 1. Overview Install nodejs on centos
+https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager
+curl -sL https://rpm.nodesource.com/setup | bash -
+yum -y install nodejs
+/etc/yum.repos.d/epel.repo
+node -v
 
 #### 1.1 Application architecture
 
