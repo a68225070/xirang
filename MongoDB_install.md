@@ -268,7 +268,6 @@
 		* Start ArangoDB by Command:
 			* sudo service arangodb start
 		* Import ArangoDB from dump file
-			* 1. Get arangoDB last dump from link: ftp://hzogrvm01.china.nsn-net.net/arango_backup/
 			* 2. unzip dump file by command : tar zxvf coop_arangodb_dump.tar.gz
 			* 3. create database falcon by command : 
 			* $ arangosh
