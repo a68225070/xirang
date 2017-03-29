@@ -47,7 +47,7 @@
 
 
 #### 7.2. Installation
-1. Install components:(You can get the more details information from:  [How to build development environment on Win7?](#link_a1 "How to build Coop development environment on Win7"))
+1. Install components:(You can get the more details information from:  [How to build development environment on Win7?](#link_a1 "How to build development environment on Win7"))
   * Nodejs: https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager
   * Mongodb: http://docs.mongodb.org/manual/tutorial/install-mongodb-on-ubuntu/
   * Nginx: `sudo apt-get install nginx`
@@ -62,9 +62,8 @@
         #start falcon using 1 instance(pm2 start ./bin/www --name "falcon" --max-memory-restart 4096M --node-args="--max_old_space_size=4096")  
         #start falconReader using 1 instance(pm2 start reader.js --name "falconReader" --max-memory-restart 4096M --node-args="--max_old_space_size=4096")  
 1. Check out the code:
-  * Generate your ssh key within your development environment by http://gitlab.china.nsn-net.net/help/ssh/README
-  * and set it into gitlab http://gitlab.china.nsn-net.net/profile/keys
-  * in your working folding, 'git clone http://gitlab.china.nsn-net.net/cpd/falcon.git'
+
+  * in your working folding, 'git clone http://gitlab.com/falcon.git'
   * install node modules: `cd falcon/producer; npm install`
 
 1. Add a site config (based at folder `falcon/frontend`) to `/etc/nginx/sites-available`, and make a soft link in `/etc/nginx/sites-enabled`, then restart nginx. Example:
@@ -74,7 +73,7 @@
 
         server {
           listen *:80 default_server;         # e.g., listen 192.168.1.1:80; In most cases *:80 is a good idea
-          server_name coop.china.nsn-net.net;     # e.g., server_name source.example.com;
+          server_name xxx.xxx.xx;     # e.g., server_name source.example.com;
           server_tokens off;     # don't show the version number, a security best practice
           proxy_redirect off;
           proxy_set_header Host             $host;
@@ -134,18 +133,9 @@
 
 - Start arangodb : `root@hztdltev02:/data/arangodb# service arangodb start`
 - Start Falcon : `pm2 reload falcon; pm2 reload falconReader`
-- Start CI: `root@hztdltev02:/data/ci# start_ci.sh`
-- Backup Job: http://coop.china.nsn-net.net/ci/job/cron_db_backup/
 - Backup Strategy: daily, and keep the latest 10 copies
-- Dumped DB download FTP: ftp://hzogrvm01.china.nsn-net.net/mongo_backup/
-- Restore from dumped DB (**NOTE**, it will drop your current database): `mongorestore  --drop "/home/cpd/mongo_backup/$latest_dump"`
-- Coop maintenance in .bashrc
-  * alias startmongo='mongod --fork --syslog --dbpath /data/db --bind_ip 127.0.0.1'; startmongo
-  * alias stopmongo='mongod --shutdown'; stopmongo
-  * alias mountpilot='sshfs -o nonempty -o allow_other -o kernel_cache -o auto_cache -o reconnect cpd@hzogrvm01.china.nsn-net.net:/home/cpd/mongo_backup /home/cpd/mongo_backup' ; mountpilot
-- mount /home/cpd/mongo_backup on /srv/ftp/mongo_backup
-  * ssh to hzogrvm01.china.nsn-net.net
-  * mount --bind /home/cpd/mongo_backup /srv/ftp/mongo_backup
+- Restore from dumped DB (**NOTE**, it will drop your current database): `mongorestore  --drop "/home/mongo_backup/$latest_dump"`
+
 
 <a name="link_10" id="link_10"></a>
 ### 10. Learning Resources
@@ -164,10 +154,6 @@
 * [outdatedbrowser](http://outdatedbrowser.com/en/project, "outdatedbrowser 1.1.0")
 * [debug on nodejs](https://github.com/node-inspector/node-inspector#quick-start)
 
-
-<a name="link_12" id="link_12"></a>
-### 11. Post Data For PCI 
-- [Post Data For PCI ](http://becrtt01.china.nsn-net.net/cpd/falcon/tree/master/documents/api.pci.common.md 'PCI')
 
 ### A - Questions and Anwsers
 <a name="link_a1" id="link_a1"></a>
@@ -225,15 +211,15 @@
 		$ make
 		$ sudo make install
 ```
-	* c. Clone Coop Source code by command:
+	* c. Clone Source code by command:
 ```
-    $ git clone http://gitlab.china.nsn-net.net/cpd/falcon.git ~/falcon
-    (Need add your SSH key into Gitlab profile first: http://becrtt01.china.nsn-net.net/help/ssh/README)
+    $ git clone http://gitlab.com/falcon.git ~/falcon
+
 ```
 	* d. Config proxy for npm, and check conifg:
 ```
-    $ npm config set proxy http://10.144.1.10:8080
-    $ npm config set https-proxy http://10.144.1.10:8080
+    $ npm config set proxy http://11.11.1.10:8080
+    $ npm config set https-proxy http://11.11.1.10:8080
     $ npm config list
 ```
 	* e. Switch to ./falcon/producer folder and run command `npm install`, this will install all dependencies listed in package.json
@@ -251,7 +237,6 @@
 		* Start MongoDB by Command:
 			* sudo service mongod start
 		* Import mongoDB from dump file
-			1. Get mongoDB last dump from link: ftp://hzogrvm01.china.nsn-net.net/mongo_backup/
 			2. unzip dump file by command : tar zxvf dump_2016-03-25-003500.tar.gz
 			3. import mongoDB by command: mongorestore  --drop dump_2016-03-25-003500
 			4. Connect mongoDB by command: mongo 127.0.0.1/pipeline
