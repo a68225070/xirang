@@ -1,4 +1,4 @@
-var later = require('later');
+//var later = require('later');
 var https = require('https');
 var moment = require('moment');
 
@@ -19,6 +19,7 @@ var timer = later.setInterval(test, sched);
 setTimeout(test, 2000);
 //到此处是later的实现
 */
+test();
 
 function test(){
 	console.log(moment().format('YYYY/MM/DD hh:mm:ss'));
