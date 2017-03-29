@@ -24,13 +24,6 @@ function getsha(intext){
   var signature = shaObj.getHash('SHA-1', 'HEX');
   return signature;
 }
-/*
-var getsign = function (indata ) {
-  var string = raw(indata);
-  console.log("new string=%s",string);
-  return getsha(string);
-};
-*/
 
 module.exports = function(app){
    app.get('/',function(req,res,next){
@@ -51,13 +44,6 @@ module.exports = function(app){
         return next();
       }
       console.log("#### have some call from port\nrecived:\n signature=%s timestamp=%s nonce=%s",signature,timestamp,nonce);
-/*      var tmpobj = {
-        token: TOKEN,
-        nonce: nonce,
-        timestamp: timestamp
-      };
-      var new_signature = getsign(tmpobj);
-*/
       var s2 = [TOKEN,timestamp,nonce];
       s2.sort();
       var new_signature = getsha(s2.join(''));
@@ -69,22 +55,19 @@ module.exports = function(app){
       res.render('xirang',{issuccess:"Hello success"});
    });
    app.post('/interface',function(req,res){
-      var indata = req.body.xml||'';
-      console.log("recive data:%s",indata);
-      if (indata){
+          var indata = req.body.xml||'';
+          console.log("recive data:%s",indata);
+          if (indata){
+          res.writeHead(200, {'Content-Type': 'text/xml'});
 
-      //      res.writeHead(200, {'Content-Type': 'application/xml'});
-      res.writeHead(200, {'Content-Type': 'text/xml'});
-
-      var openid = req.query.openid||'';
-      if (openid && openid !=''){
-        var send = util.format('<xml><ToUserName><![CDATA[%s]]></ToUserName><FromUserName><![CDATA[%s]]></FromUserName><CreateTime>%s</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[%s]]></Content></xml>',indata.fromusername,indata.tousername,moment().unix(),'hello how are you');
-        console.log(send);
-        res.end(send);
-      }else{
-        res.send('success');
-      }
-   //     res.send(send);
+          var openid = req.query.openid||'';
+          if (openid && openid !=''){
+            var send = util.format('<xml><ToUserName><![CDATA[%s]]></ToUserName><FromUserName><![CDATA[%s]]></FromUserName><CreateTime>%s</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[%s]]></Content></xml>',indata.fromusername,indata.tousername,moment().unix(),'hello how are you');
+            console.log(send);
+            res.end(send);
+          }else{
+            res.send('success');
+          }
       }
    });
 };
