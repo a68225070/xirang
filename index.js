@@ -38,7 +38,6 @@ module.exports = function(app){
       var echostr = req.query.echostr||'';
       var grant_type = 'client_credential';
       var appid='wx9f7e27c6297a4437';
-      var secret='53f06963d5e1c00a5a12e0436b288d26';
 
       if (signature ==''){
         return next();
