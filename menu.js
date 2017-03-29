@@ -70,7 +70,7 @@ function test(){
 								{
 									"type":"view",
 									"name":"加入我们",
-									"url":"http://www.ss.pku.edu.cn/"
+									"url":"http://www.baidu.com/"
 								}
 							]
 						}
