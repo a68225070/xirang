@@ -15,3 +15,8 @@ https://github.com/ymgd/weixinopen.git
 https://github.com/Ravior/Ordering-System-Weixin.git
 
 https://github.com/sbabybird/WeixinOne.git
+
+
+deploy
+
+https://github.com/willerce/canku.git
