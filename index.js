@@ -30,6 +30,12 @@ module.exports = function(app){
        res.render('xirang',{issuccess:"Hello this is XiRang success"});
    });
 
+   app.get('/pub/:id',function(req,res,next){
+       console.log(req.query.id);
+       res.render('xirang',{issuccess:"Hello this is XiRang success"});
+   });
+
+  
    app.get('/interface',function(req,res,next){
       var signature = req.query.signature||'';
       var timestamp = parseInt(req.query.timestamp||'0');
