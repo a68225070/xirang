@@ -31,8 +31,8 @@ module.exports = function(app){
    });
 
    app.get('/pub/:id',function(req,res,next){
-       console.log(req.query.id);
-       res.render('xirang',{issuccess:"Hello this is XiRang success"});
+       console.log("###id=%s",req.query.id);
+       res.render('xirang',{issuccess:"获取二维码页面"});
    });
 
   
