@@ -45,6 +45,11 @@ function test(){
 				var menu = {
 					"button":[//两个按钮
 						{
+							"name":"二维码",
+							"type":"view",
+							"url":"https://115.159.161.35/pub/pay"
+						},						
+						{
 							"name":"我的",//一级菜单按钮“我的”
 							"sub_button":[//二级子按钮
 								{
