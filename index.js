@@ -30,9 +30,9 @@ module.exports = function(app){
        res.render('xirang',{issuccess:"Hello this is XiRang success"});
    });
 
-   app.get('/pub/:id',function(req,res,next){
-       console.log("###id=%s",req.query.id);
-       res.render('xirang',{issuccess:"获取二维码页面"});
+   app.get('/pub/:view',function(req,res,next){
+       console.log("###id=%s",req.params.view);
+       res.render(req.params.view,{issuccess:"获取二维码页面"});
    });
 
   
