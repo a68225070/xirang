@@ -19,6 +19,40 @@
 Express Command not found
 安装一个包npm install -g express-generator
 
+### MongoDB memory monitor
+shell>free -m 
+             total       used       free     shared    buffers     cached 
+Mem:         32101      29377       2723          0        239      25880 
+free memory = echo '2723+239+25880'|  bc -l 
+
+* mongo> db.serverStatus().mem: 
+```
+{ 
+    "resident" : 22346, 
+    "virtual" : 1938524, 
+    "mapped" : 962283 
+} 
+```
+mongo> db.stats() 
+```
+{ 
+        "dataSize" : 1004862191980, 
+        "indexSize" : 1335929664         1.3G  + hotdata == mongoDB need memory
+} 
+```
+
+* shell> mongostat 
+```
+mapped  vsize    res faults 
+  940g  1893g  21.9g      0 
+  940g  1893g  21.9g      0 
+  940g  1893g  21.9g      0 
+mapped：映射到内存的数据大小 
+visze：占用的虚拟内存大小 
+res：实际使用的内存大小 
+```
+
+
 #### 1.1 Application architecture
 
 <a name="link_2" id="link_2"></a>
@@ -302,6 +336,8 @@ b<a name="link_8" id="link_8"></a>
 ### Restore single collection without dropping example:
 mongodump -h 127.0.0.1:27017 --db pipeline --collection pci --out ./
 mongorestore --collection pci --db pipeline ./pci.bson
+
+db.events.find({_id:'11'}).explain()
 
 ### Query 'type'&'promotedrev' same but 'path' is difference from events_scci
 db.events_scci.aggregate([{"$match":{"promotedrev":{$exists:true}}},{"$group":{_id:{type:"$type",promotedrev:"$promotedrev",path:"$promotedrepo"}}},{$group:{_id:{"type":"$_id.type",promotedrev:"$_id.promotedrev"},count:{"$sum":1}}},{$match:{count:{$gte:2}}}]);
