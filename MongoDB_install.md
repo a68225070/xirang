@@ -19,6 +19,13 @@
 Express Command not found
 安装一个包npm install -g express-generator
 
+### memory monitor
+shell>free -m 
+             total       used       free     shared    buffers     cached 
+Mem:         32101      29377       2723          0        239      25880 
+free memory = echo '2723+239+25880'|  bc -l 
+
+
 #### 1.1 Application architecture
 
 <a name="link_2" id="link_2"></a>
