@@ -19,11 +19,38 @@
 Express Command not found
 安装一个包npm install -g express-generator
 
-### memory monitor
+### MongoDB memory monitor
 shell>free -m 
              total       used       free     shared    buffers     cached 
 Mem:         32101      29377       2723          0        239      25880 
 free memory = echo '2723+239+25880'|  bc -l 
+
+* mongo> db.serverStatus().mem: 
+```
+{ 
+    "resident" : 22346, 
+    "virtual" : 1938524, 
+    "mapped" : 962283 
+} 
+```
+mongo> db.stats() 
+```
+{ 
+        "dataSize" : 1004862191980, 
+        "indexSize" : 1335929664         1.3G  + hotdata == mongoDB need memory
+} 
+```
+
+* shell> mongostat 
+```
+mapped  vsize    res faults 
+  940g  1893g  21.9g      0 
+  940g  1893g  21.9g      0 
+  940g  1893g  21.9g      0 
+mapped：映射到内存的数据大小 
+visze：占用的虚拟内存大小 
+res：实际使用的内存大小 
+```
 
 
 #### 1.1 Application architecture
