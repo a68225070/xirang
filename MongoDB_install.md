@@ -337,6 +337,8 @@ b<a name="link_8" id="link_8"></a>
 mongodump -h 127.0.0.1:27017 --db pipeline --collection pci --out ./
 mongorestore --collection pci --db pipeline ./pci.bson
 
+db.events.find({_id:'11'}).explain()
+
 ### Query 'type'&'promotedrev' same but 'path' is difference from events_scci
 db.events_scci.aggregate([{"$match":{"promotedrev":{$exists:true}}},{"$group":{_id:{type:"$type",promotedrev:"$promotedrev",path:"$promotedrepo"}}},{$group:{_id:{"type":"$_id.type",promotedrev:"$_id.promotedrev"},count:{"$sum":1}}},{$match:{count:{$gte:2}}}]);
 
