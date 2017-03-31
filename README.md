@@ -1,5 +1,6 @@
 # For person github try 
-first 你好
+How to install gerrit on Ubuntu
+https://www.digitalocean.com/community/tutorials/how-to-install-gerrit-on-an-ubuntu-cloud-server
 ```javascript
 set fileencodings=utf-8,gb2312,gbk,gb18030
 set termencoding=utf-8
