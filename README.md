@@ -66,3 +66,5 @@ pm2 restart falcon || exit -1
 pm2 restart falconReader || exit -1
 /etc/init.d/nginx restart
 ```
+
+
