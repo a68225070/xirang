@@ -25,6 +25,24 @@ function getsha(intext){
   return signature;
 }
 
+var Auth = {
+    isValid: function (req) {
+        if (!req.headers.authorization) return false;
+
+      var encoded = req.headers.authorization.split(' ')[1];
+        var decoded = new Buffer(encoded, 'base64').toString('utf8');
+        var id = decoded.split(':')[0];
+        var secret = decoded.split(':')[1];
+
+        for (var i = 0; i < apps.length; i++) {
+            if(id === apps[i].appId && secret === apps[i].appSecret){
+                return true;
+            }
+        }
+        return false;
+    }
+}
+
 module.exports = function(app){
    app.get('/',function(req,res,next){
 
@@ -69,8 +87,28 @@ module.exports = function(app){
           var openid = req.query.openid||'';
           if (openid && openid !=''){
 
-            var tk_obj = require('./lib/index')(app);
-            tk = tk_obj.getToken(req,res);
+var AccessToken = require('./lib/accessToken');
+var config = require('./config.json');
+var storeFactory = require('./lib/store/factory');
+var wxAppId = config.wxAppId;
+var wxAppSecret = config.wxAppSecret;
+var apps = config.auth.apps;
+var token = new AccessToken(wxAppId,wxAppSecret,storeFactory.get(config.store || 'memory'));
+            
+    if (config.auth.enable !==false && !Auth.isValid(req)) {
+        console.log('auth fail');
+      
+    } 
+            
+     token.refreshToken().then(
+        function (data) {
+            res.sendStatus(200);
+        },
+        function (err) {
+            res.sendStatus(504);
+            console.error(err);
+        }
+    );
 
             var send = util.format('<xml><ToUserName><![CDATA[%s]]></ToUserName><FromUserName><![CDATA[%s]]></FromUserName><CreateTime>%s</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[%s]]></Content></xml>',indata.fromusername,indata.tousername,moment().unix(),'hello how are you');
             console.log(send);
