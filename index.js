@@ -49,11 +49,12 @@ var client = new https();
    var url = 'https://api.weixin.qq.com/semantic/semproxy/search?access_token=xirang';//+token.access_token;
    var post = {access_token:token.access_token,
 	       query:query,
-	       category:,
+	       "city":"北京",
+	       "category": "flight,hotel",
 	       appid:appid
 	      }
-   
-               client.post(url,post).then(function (data) {
+
+   		client.post(url,post).then(function (data) {
 		       if(typeof data === 'string'){
 			    data = JSON.parse(data);
 			}
@@ -126,9 +127,12 @@ module.exports = function(app){
 	console.log('auth pass');
     } 
             
-     token.refreshToken().then(
+      token.getToken().then(
         function (data) {
            console.log('token=%j',data);
+	   console.log('begin call yuyi');
+	   getyuyi(data,'查一下明天从北京到上海的南航机票',wxAppId);
+	   
         },
         function (err) {
             
