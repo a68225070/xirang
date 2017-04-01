@@ -44,8 +44,16 @@ var Auth = {
 }
 
 module.exports = function(app){
-   app.get('/',function(req,res,next){
+	var AccessToken = require('./lib/accessToken');
+	var config = require('./setting.json');
+	var storeFactory = require('./lib/store/factory');
+	var wxAppId = config.wxAppId;
+	var wxAppSecret = config.wxAppSecret;
+	var apps = config.auth.apps;
+	var token = new AccessToken(wxAppId,wxAppSecret,storeFactory.get(config.store || 'memory'));
 
+	
+    app.get('/',function(req,res,next){
        res.render('xirang',{issuccess:"Hello this is XiRang success"});
    });
 
@@ -87,13 +95,6 @@ module.exports = function(app){
           var openid = req.query.openid||'';
           if (openid && openid !=''){
 
-var AccessToken = require('./lib/accessToken');
-var config = require('./setting.json');
-var storeFactory = require('./lib/store/factory');
-var wxAppId = config.wxAppId;
-var wxAppSecret = config.wxAppSecret;
-var apps = config.auth.apps;
-var token = new AccessToken(wxAppId,wxAppSecret,storeFactory.get(config.store || 'memory'));
             
     if (config.auth.enable !==false && !Auth.isValid(req)) {
         console.log('auth fail');
