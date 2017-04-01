@@ -1,0 +1,29 @@
+{
+  "wxAppId": "wxbf2730c40afd4c94",
+  "wxAppSecret": "4ab3aeef54b74334c2806c99e6cf2c33",
+  "store":"memory",
+  "port": 4730,
+  "https":{
+    "enable":false,
+    "port":4740,
+    "sslCert": "./sslcert/server.crt",
+    "sslKey": "./sslcert/server.key"
+  },
+  "auth": {
+    "enable": false,
+    "apps": [
+      {
+        "appId": "UNIKEY1",
+        "appSecret": "SECRET"
+      },
+      {
+        "appId": "UNIKEY2",
+        "appSecret": "SECRET"
+      },
+      {
+        "appId": "UNIKEY3",
+        "appSecret": "SECRET"
+      }
+    ]
+  }
+}
