@@ -43,6 +43,30 @@ var Auth = {
     }
 }
 
+function getyuyi(token,query,appid){
+var https = require('./httpsClient');
+var client = new https();	
+   var url = 'https://api.weixin.qq.com/semantic/semproxy/search?access_token=xirang';//+token.access_token;
+   var post = {access_token:token.access_token,
+	       query:query,
+	       category:,
+	       appid:appid
+	      }
+   
+               client.post(url,post).then(function (data) {
+		       if(typeof data === 'string'){
+			    data = JSON.parse(data);
+			}
+			if (data.errcode) {
+			    console.log(data.errcode + ':' + data.errmsg);
+			}else{
+			    console.log('Got data %j',data);
+			}
+		    },function(err){
+			console.log('###2' + err);
+		    });
+}
+
 module.exports = function(app){
 	var AccessToken = require('./lib/accessToken');
 	var config = require('./setting.json');
