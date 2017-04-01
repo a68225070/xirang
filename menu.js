@@ -47,7 +47,7 @@ function test(){
 						{
 							"name":"二维码",
 							"type":"view",
-							"url":"https://115.159.161.35/pub/pay"
+							"url":"https://www.naja.club/pub/pay"
 						},						
 						{
 							"name":"我的",//一级菜单按钮“我的”
@@ -75,7 +75,7 @@ function test(){
 								{
 									"type":"view",
 									"name":"加入我们",
-									"url":"https://115.159.161.35/"
+									"url":"https://www.naja.club/"
 								}
 							]
 						}
