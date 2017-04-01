@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "nodejs ./bin/www",
-    "test": "export TZ=Asia/Shanghai && ./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha -- -R spec -t 10000"},
+    "test": "export TZ=Asia/Shanghai && ./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha -- -R spec -t 10000"
+  },
   "dependencies": {
     "body-parser": "^1.15.2",
     "body-parser-xml": "^1.1.0",
@@ -16,7 +17,8 @@
     "jssha": "^1.5.0",
     "moment": "^2.18.1",
     "morgan": "~1.0.0",
-    "static-favicon": "~1.0.0"
+    "static-favicon": "~1.0.0",
+    "promise": "^7.0.4"
   },
   "devDependencies": {
     "expect.js": "~0.3.1",
