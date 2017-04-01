@@ -88,7 +88,7 @@ module.exports = function(app){
           if (openid && openid !=''){
 
 var AccessToken = require('./lib/accessToken');
-var config = require('./config.json');
+var config = require('./setting.json');
 var storeFactory = require('./lib/store/factory');
 var wxAppId = config.wxAppId;
 var wxAppSecret = config.wxAppSecret;
@@ -97,16 +97,17 @@ var token = new AccessToken(wxAppId,wxAppSecret,storeFactory.get(config.store ||
             
     if (config.auth.enable !==false && !Auth.isValid(req)) {
         console.log('auth fail');
-      
+    }else{
+	console.log('auth pass');
     } 
             
      token.refreshToken().then(
         function (data) {
-            res.sendStatus(200);
+           console.log('token=%j',data);
         },
         function (err) {
-            res.sendStatus(504);
-            console.error(err);
+            
+            console.error('token fail %s',err);
         }
     );
 
