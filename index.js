@@ -54,7 +54,7 @@ var client = new https();
 	       appid:appid
 	      }
 
-   		client.post(url,post).then(function (data) {
+   		client.get(url,post).then(function (data) {
 		       if(typeof data === 'string'){
 			    data = JSON.parse(data);
 			}
