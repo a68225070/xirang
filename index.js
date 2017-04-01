@@ -27,6 +27,7 @@ function getsha(intext){
 
 module.exports = function(app){
    app.get('/',function(req,res,next){
+
        res.render('xirang',{issuccess:"Hello this is XiRang success"});
    });
 
@@ -59,13 +60,18 @@ module.exports = function(app){
       }
       res.render('xirang',{issuccess:"Hello success"});
    });
+
    app.post('/interface',function(req,res){
       var indata = req.body.xml;
-      console.log("recive data:%s",indata);
+      console.log("Recived Message:\n%j\n####################",indata);
       if (indata.fromusername){
           res.writeHead(200, {'Content-Type': 'text/xml'});
           var openid = req.query.openid||'';
           if (openid && openid !=''){
+
+            var tk_obj = require('./lib/index')(app);
+            tk = tk_obj.getToken(req,res);
+
             var send = util.format('<xml><ToUserName><![CDATA[%s]]></ToUserName><FromUserName><![CDATA[%s]]></FromUserName><CreateTime>%s</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[%s]]></Content></xml>',indata.fromusername,indata.tousername,moment().unix(),'hello how are you');
             console.log(send);
             res.end(send);
