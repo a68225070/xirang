@@ -1,6 +1,7 @@
 var util = require('util');
 var jsSHA = require('jssha');
 var moment = require('moment');
+var request = require('request');
 
 var raw = function (args) {
   var keys = Object.keys(args);
@@ -54,7 +55,9 @@ var client = new https();
 	       appid:appid
 	      }
 
-   		client.get(url,post).then(function (data) {
+      request(url, function (error, response, body) {
+	      if (!error && response.statusCode == 200) {
+        	console.log("Get Wechat access token: " + body);
 		       if(typeof data === 'string'){
 			    data = JSON.parse(data);
 			}
@@ -63,9 +66,10 @@ var client = new https();
 			}else{
 			    console.log('Got data %j',data);
 			}
-		    },function(err){
-			console.log('###2' + err);
-		    });
+	      } else {
+        	console.log(error);
+      	      }
+   
 }
 
 module.exports = function(app){
