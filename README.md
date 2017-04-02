@@ -60,10 +60,13 @@ execute pathogen#infect()
 * cd ~/.vim/bundle
 * git clone https://github.com/wookiehangover/jshint.vim
 
-### Install YCM
+### Install YCM (  in Vim: :echo has('python') || has('python3'). The output should be 1)
+* sudo apt-get install build-essential cmake
+* sudo apt-get install python-dev python3-dev
 * cd ~/.vim/bundle
 * git clone https://github.com/Valloric/YouCompleteMe.git
 * git submodule update --init --recursive
+
 * npm install -g typescript     (nodejs)
 * cd ~/.vim/bundle/YouCompleteMe
 * ./install.py --tern-completer
