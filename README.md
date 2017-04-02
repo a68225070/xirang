@@ -60,6 +60,14 @@ execute pathogen#infect()
 * cd ~/.vim/bundle
 * git clone https://github.com/wookiehangover/jshint.vim
 
+### Install YCM
+* cd ~/.vim/bundle
+* git clone https://github.com/Valloric/YouCompleteMe.git
+* git submodule update --init --recursive
+* npm install -g typescript     (nodejs)
+* cd ~/.vim/bundle/YouCompleteMe
+* ./install.py --tern-completer
+
 
 https://github.com/tvrcgo/weixin-pay.git
 https://github.com/node-webot/weixin-robot.git
