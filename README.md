@@ -8,6 +8,59 @@ set fileformats=unix
 set encoding=prc
 ```
 
+# Install vim plug-in
+## Install pathogen 
+* mkdir -p ~/.vim/autoload ~/.vim/bundle
+* curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
+* vim ~/.vimrc add below script:
+```python
+"自动缩进
+set autoindent
+"语法高亮
+syntax on
+"自动检测文件类型并加载相应的设置
+filetype plugin indent on
+"不自动换行
+set nowrap
+"智能对齐方式
+set smartindent
+"一个tab是4个字符
+set tabstop=4
+"按一次tab前进4个字符
+set softtabstop=4
+"显示行号
+set number
+"缺省不产生备份文件
+set nobackup
+
+execute pathogen#infect()
+
+"execute pathogen#infect('stuff/{}')
+"execute pathogen#infect('bundle/{}', '~/src/vim/bundle/{}')
+```
+## Install plugins
+* cd ~/.vim/bundle
+```
+  set tabstop=4
+  set softtabstop=4
+  set shiftwidth=4
+  set expandtab
+```
+### Install sensible.vim
+* git clone https://github.com/tpope/vim-sensible.git
+### Install Nerdtree
+* git clone https://github.com/scrooloose/nerdtree.git
+* ctrl+w : switch from tree and window
+* gt or gT : switch from tab
+* o : open file in one window
+* t : open file in new tab
+
+### Install jshint
+* sudo npm install -g jshint
+* cd ~/.vim/bundle
+* git clone https://github.com/wookiehangover/jshint.vim
+
+
 https://github.com/tvrcgo/weixin-pay.git
 https://github.com/node-webot/weixin-robot.git
 
