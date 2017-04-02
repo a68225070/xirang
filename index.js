@@ -5,7 +5,7 @@ var request = require('request');
 
 var raw = function (args) {
   var keys = Object.keys(args);
-  keys = keys.sort()
+  keys = keys.sort();
   var newArgs = {};
   keys.forEach(function (key) {
     newArgs[key.toLowerCase()] = args[key];
@@ -45,19 +45,21 @@ var Auth = {
 }
 
 function getyuyi(token,query,appid){
-var https = require('./httpsClient');
-var client = new https();	
-   var url = 'https://api.weixin.qq.com/semantic/semproxy/search?access_token=xirang';//+token.access_token;
+   var url = 'https://api.weixin.qq.com/semantic/semproxy/search?access_token='+token.access_token;
+   query="东风汽车";
    var post = {access_token:token.access_token,
 	       query:query,
 	       "city":"北京",
-	       "category": "flight,hotel",
-	       appid:appid
-	      }
+	       "category": "stock",
+	       appid:appid,
+               uid:'123456'
+	      };
+    console.log('post data to yuyi%j',post);
 
-      request(url, function (error, response, body) {
+      request(url, function (error, response, data) {
+       console.log('request callback called');
 	      if (!error && response.statusCode == 200) {
-        	console.log("Get Wechat access token: " + body);
+        	console.log("recived data: " + data);
 		       if(typeof data === 'string'){
 			    data = JSON.parse(data);
 			}
@@ -69,7 +71,7 @@ var client = new https();
 	      } else {
         	console.log(error);
       	      }
-   
+	});   
 }
 
 module.exports = function(app){
@@ -134,8 +136,8 @@ module.exports = function(app){
       token.getToken().then(
         function (data) {
            console.log('token=%j',data);
-	   console.log('begin call yuyi');
-	   getyuyi(data,'查一下明天从北京到上海的南航机票',wxAppId);
+	   //console.log('begin call yuyi');
+	   //getyuyi(data,'查一下明天从北京到上海的南航机票',wxAppId);
 	   
         },
         function (err) {
