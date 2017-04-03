@@ -44,6 +44,42 @@ var Auth = {
     }
 }
 
+function callRobot(info,res){
+    var post_data = quetystring.stringify({
+        key: 'bc7483a3e69e4a58ac87f2c0949a58ae',
+        info: info,
+        userid: 'xirang'
+    });
+    var options = {
+        host: 'www.tuling123.com',
+        port: 80,
+        path: '/openapi/api',
+        method: 'POST',
+        rejectUnauthorized: false,
+        headers: {
+                "Content-Type": 'application/x-www-form-urlencoded', //这个一定要有
+        }
+    };
+    request(options,function(error,response,data){
+        console.log('STATUS: ' + response.statusCode);
+        console.log('HEADERS: ' + JSON.stringify(response.headers));
+
+        if(!error && response.statusCode == 200){
+            console.log('STATUS: ' + response.statusCode);
+            console.log('HEADERS: ' + JSON.stringify(response.headers));
+
+        }else{
+            console.log("Call robot failed!");
+        }
+    }
+});
+
+req.write(post_data);
+req.end();
+
+
+}
+
 function getyuyi(token,query,appid){
    var url = 'https://api.weixin.qq.com/semantic/semproxy/search?access_token='+token.access_token;
    query="东风汽车";
