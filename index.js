@@ -44,33 +44,38 @@ var Auth = {
     }
 }
 
-function callRobot(info,res){
-    var post_data = quetystring.stringify({
+function callRobot(indata,res){
+    var querystring = require("querystring");
+    var post_data = querystring.stringify({
         key: 'bc7483a3e69e4a58ac87f2c0949a58ae',
-        info: info,
+        info: indata.content||'Hello',
         userid: 'xirang'
     });
+    console.log("post data to tuling=%s",post_data);
     var options = {
-        host: 'www.tuling123.com',
-        port: 80,
-        path: '/openapi/api',
+//        host: 'www.tuling123.com',
+//        port: 80,
+//        path: '/openapi/api',
         method: 'POST',
         rejectUnauthorized: false,
-        headers:{"Content-Type": 'application/x-www-form-urlencoded'}
+        headers:{"Content-Type": 'application/x-www-form-urlencoded'},
+        body:post_data
     };
     var tmpstr='我累了，下次再聊吧!';
-    request(options,function(error,response,data){
-        console.log('STATUS: ' + response.statusCode);
-        console.log('HEADERS: ' + JSON.stringify(response.headers));
-
+    request('http://www.tuling123.com/openapi/api',options,function(error,response,data){
+//        console.log('STATUS: ' + response.statusCode);
+//        console.log('HEADERS: ' + JSON.stringify(response.headers));
         if(!error && response.statusCode == 200){
-            console.log('STATUS: ' + response.statusCode);
-            console.log('HEADERS: ' + JSON.stringify(response.headers));
-            tmpstr = response.data;
+            var ret = JSON.parse(response.body);
+            console.log("机器人返回:%j",ret);
+            tmpstr = ret.text;
         }else{
-            console.log("Call robot failed!");
+            console.log("Call robot failed!" + err);
         }
-	    var send = util.format('<xml><ToUserName><![CDATA[%s]]></ToUserName><FromUserName><![CDATA[%s]]></FromUserName><CreateTime>%s</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[%s]]></Content></xml>',indata.fromusername,indata.tousername,moment().unix(),'hello how are you');
+	    var send = util.format('<xml><ToUserName><![CDATA[%s]]></ToUserName><FromUserName><![CDATA[%s]]></FromUserName><CreateTime>%s</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[%s]]></Content></xml>'
+                    ,indata.fromusername
+                    ,indata.tousername,moment().unix()
+                    ,tmpstr);
 	    console.log(send);
 	    res.end(send);
     });
@@ -173,7 +178,7 @@ module.exports = function(app){
 		    console.error('token fail %s',err);
 		}
 	      );
-		callRobot (indata.content,res);
+		callRobot (indata,res);
       }else{
             res.send('success');
           }
