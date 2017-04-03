@@ -56,9 +56,7 @@ function callRobot(info,res){
         path: '/openapi/api',
         method: 'POST',
         rejectUnauthorized: false,
-        headers: {
-                "Content-Type": 'application/x-www-form-urlencoded', //这个一定要有
-        }
+        headers:{"Content-Type": 'application/x-www-form-urlencoded'}
     };
     var tmpstr='我累了，下次再聊吧!';
     request(options,function(error,response,data){
@@ -75,9 +73,7 @@ function callRobot(info,res){
 	    var send = util.format('<xml><ToUserName><![CDATA[%s]]></ToUserName><FromUserName><![CDATA[%s]]></FromUserName><CreateTime>%s</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[%s]]></Content></xml>',indata.fromusername,indata.tousername,moment().unix(),'hello how are you');
 	    console.log(send);
 	    res.end(send);
-
-    
-    }
+    });
 }
 
 function getyuyi(token,query,appid){
