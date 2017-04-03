@@ -60,6 +60,7 @@ function callRobot(info,res){
                 "Content-Type": 'application/x-www-form-urlencoded', //这个一定要有
         }
     };
+    var tmpstr='我累了，下次再聊吧!';
     request(options,function(error,response,data){
         console.log('STATUS: ' + response.statusCode);
         console.log('HEADERS: ' + JSON.stringify(response.headers));
@@ -67,17 +68,16 @@ function callRobot(info,res){
         if(!error && response.statusCode == 200){
             console.log('STATUS: ' + response.statusCode);
             console.log('HEADERS: ' + JSON.stringify(response.headers));
-
+            tmpstr = response.data;
         }else{
             console.log("Call robot failed!");
         }
+	    var send = util.format('<xml><ToUserName><![CDATA[%s]]></ToUserName><FromUserName><![CDATA[%s]]></FromUserName><CreateTime>%s</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[%s]]></Content></xml>',indata.fromusername,indata.tousername,moment().unix(),'hello how are you');
+	    console.log(send);
+	    res.end(send);
+
+    
     }
-});
-
-req.write(post_data);
-req.end();
-
-
 }
 
 function getyuyi(token,query,appid){
@@ -161,31 +161,24 @@ module.exports = function(app){
           res.writeHead(200, {'Content-Type': 'text/xml'});
           var openid = req.query.openid||'';
           if (openid && openid !=''){
-
+	    if (config.auth.enable !==false && !Auth.isValid(req)) {
+		console.log('auth fail');
+	    }else{
+		console.log('auth pass');
+	    } 
             
-    if (config.auth.enable !==false && !Auth.isValid(req)) {
-        console.log('auth fail');
-    }else{
-	console.log('auth pass');
-    } 
-            
-      token.getToken().then(
-        function (data) {
-           console.log('token=%j',data);
-	   //console.log('begin call yuyi');
-	   //getyuyi(data,'查一下明天从北京到上海的南航机票',wxAppId);
-	   
-        },
-        function (err) {
-            
-            console.error('token fail %s',err);
-        }
-    );
-
-            var send = util.format('<xml><ToUserName><![CDATA[%s]]></ToUserName><FromUserName><![CDATA[%s]]></FromUserName><CreateTime>%s</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[%s]]></Content></xml>',indata.fromusername,indata.tousername,moment().unix(),'hello how are you');
-            console.log(send);
-            res.end(send);
-          }else{
+	      token.getToken().then(
+		function (data) {
+		   console.log('token=%j',data);
+		   //console.log('begin call yuyi');
+		   //getyuyi(data,'查一下明天从北京到上海的南航机票',wxAppId);
+		},
+		function (err) {
+		    console.error('token fail %s',err);
+		}
+	      );
+		callRobot (indata.content,res);
+      }else{
             res.send('success');
           }
       }
