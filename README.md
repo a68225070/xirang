@@ -132,4 +132,10 @@ pm2 restart falconReader || exit -1
 /etc/init.d/nginx restart
 ```
 
-
+进入微站
+自助服务
+   -- 查找附近店铺
+   -- 预约服务
+   -- 外卖服务
+   -- 优惠券
+   -- 在线客服
