@@ -15,9 +15,20 @@
 * /etc/yum.repos.d/epel.repo
 * node -v
 
+### Express upgrade on Ubuntu
+删除步骤为：
 
-Express Command not found
-安装一个包npm install -g express-generator
+1. 查看安装的express
+> dpkg --list |grep express
+2. 使用命令移除它
+> sudo apt-get remove --purge node-express
+
+安装express
+
+> npm install -g express-generator
+
+> npm install -g express
+
 
 ### MongoDB memory monitor
 shell>free -m 
