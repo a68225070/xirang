@@ -1,3 +1,6 @@
+# Nodejs Export VS Modul Export 
+https://darrenderidder.github.io/talks/ModulePatterns/#/9
+
 # For person github try 
 How to install gerrit on Ubuntu
 https://www.digitalocean.com/community/tutorials/how-to-install-gerrit-on-an-ubuntu-cloud-server
