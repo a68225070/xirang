@@ -23,8 +23,14 @@ router.get('/foo', function (req, res, next) {
 })
 
 router.get('/clear', function (req, res, next) {
-  res.clearCookie(settings);
-  res.send('you cookie already clearn')
+    req.session.destroy(function(err) {
+        if(err){
+            res.json({ret_code: 2, ret_msg: 'Logout fail'});
+            return;
+        }
+        res.clearCookie(settings.SN);
+       res.send('you cookie already clearn')
+    });
 })
 
 
