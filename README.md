@@ -4,12 +4,7 @@ https://darrenderidder.github.io/talks/ModulePatterns/#/9
 # For person github try 
 How to install gerrit on Ubuntu
 https://www.digitalocean.com/community/tutorials/how-to-install-gerrit-on-an-ubuntu-cloud-server
-```javascript
-set fileencodings=utf-8,gb2312,gbk,gb18030
-set termencoding=utf-8
-set fileformats=unix
-set encoding=prc
-```
+
 # Upgrade npm 
 sudo npm install -g npm
 # upgrade nodejs
@@ -81,6 +76,13 @@ execute pathogen#infect()
 * cd ~/.vim/bundle/YouCompleteMe
 * ./install.py --tern-completer
 
+* vi ./vimrc
+```javascript
+set fileencodings=utf-8,gb2312,gbk,gb18030
+set termencoding=utf-8
+set fileformats=unix
+set encoding=prc
+```
 
 https://github.com/tvrcgo/weixin-pay.git
 https://github.com/node-webot/weixin-robot.git
