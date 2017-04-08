@@ -10,7 +10,14 @@ set termencoding=utf-8
 set fileformats=unix
 set encoding=prc
 ```
-
+# Upgrade npm 
+sudo npm install -g npm
+# upgrade nodejs
+```
+# Using Ubuntu
+curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
+sudo apt-get install -y nodejs
+```
 # Install vim plug-in
 ## Install pathogen 
 * mkdir -p ~/.vim/autoload ~/.vim/bundle
