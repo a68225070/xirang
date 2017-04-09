@@ -5,6 +5,7 @@ https://darrenderidder.github.io/talks/ModulePatterns/#/9
 # Fix node-sass install fail:
 * Download node from web
 * set SASS_BINARY_PATH=D:/WorkCode/win32-x64-46_binding.node //PATH=后面是的下载的.node所在的路径
+* export SASS_BINARY_PATH=~/download/linux-x64-46_binding.node
 1
 
 
