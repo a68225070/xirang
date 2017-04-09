@@ -1,3 +1,14 @@
+# 腾讯云数据盘加载
+```bash
+sudo fdisk -l
+sudo mkfs.ext3 /dev/vdb
+cd /
+mkdir data
+sudo mount /dev/vdb /data
+echo '/dev/vdb /data ext3 defaults 0  0' >> /etc/fstab
+```
+df -lh 查看第2块磁盘是否有正常挂载
+
 # Nodejs Export VS Modul Export 
 https://darrenderidder.github.io/talks/ModulePatterns/#/9
 
