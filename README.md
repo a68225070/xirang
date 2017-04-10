@@ -1,3 +1,6 @@
+# QR code for Nodejs
+https://github.com/soldair/node-qrcode
+
 # Image processor for Nodejs
 https://github.com/lovell/sharp
 
