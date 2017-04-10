@@ -1,4 +1,4 @@
-# Image process for Nodejs
+# Image processor for Nodejs
 https://github.com/lovell/sharp
 
 # Cloud mount disk
