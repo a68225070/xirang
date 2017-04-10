@@ -1,4 +1,7 @@
-# 腾讯云数据盘加载
+# Image process for Nodejs
+https://github.com/lovell/sharp
+
+# Cloud mount disk
 ```bash
 sudo fdisk -l
 sudo mkfs.ext3 /dev/vdb
