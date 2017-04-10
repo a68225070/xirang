@@ -1,9 +1,13 @@
 # Image Crop Resize
-https://github.com/yahoohung/ng-image-uploader
+* https://github.com/yahoohung/ng-image-uploader
 
-https://github.com/andyshora/angular-image-crop
+* https://github.com/andyshora/angular-image-crop
 
-https://github.com/AllanBishop/angular-img-cropper   
+* https://github.com/AllanBishop/angular-img-cropper   
+
+* https://github.com/cstefanache/angular2-img-cropper
+
+
 
 # QR code for Nodejs
 https://github.com/soldair/node-qrcode
