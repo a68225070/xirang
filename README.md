@@ -1,3 +1,13 @@
+# Angular2 install
+
+
+* node -v  node 4.x.x
+* npm -v   npm 3.x.x
+* sudo npm install -g @angular/cli@latest
+
+* npm install -g cnpm --registry=https://registry.npm.taobao.org
+* cnpm install node-sass
+
 # Image Crop Resize
 * https://github.com/yahoohung/ng-image-uploader
 
