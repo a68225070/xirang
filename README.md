@@ -65,6 +65,10 @@ sudo npm install -g npm
 # Using Ubuntu
 curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
 sudo apt-get install -y nodejs
+
+dpkg --list |grep express
+sudo apt-get remove --purge node-express
+
 ```
 # Install vim plug-in
 ## Install pathogen 
