@@ -1,3 +1,28 @@
+### replSet of mongoDB
+
+```
+1. stop coop mongodb	
+
+pid=$(ps -ef|grep 'mongod --fork --syslog --dbpath /data/db --bind_ip 127.0.0.1'|grep -v grep | awk '{print $2}')
+kill -9 $pid
+
+/usr/bin/mongodump -h 127.0.0.1:27017 --db pipeline -o backup_name
+
+4. start mongodb with replSet(Primary)	
+nohup mongod --dbpath /data/db --replSet coop --oplogSize 10240&
+
+5. Replica initialize	mongo
+rs.initiate()
+
+mkdir -p /data/db
+nohup mongod --dbpath=/data/db --replSet=coop   &
+7. add Secondary	mongo
+rs.add('xxx.xxx.net:27017')
+rs.add('yyy.yyy.net:27017')
+```
+
+
+
 # README
 * [1. Installation And Deployment](#link_7 "Installation And Deployment")
 * [2. Testing and deployment](#link_8)
