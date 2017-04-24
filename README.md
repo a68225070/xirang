@@ -1,3 +1,6 @@
+# Package asset search
+https://www.npmjs.com
+
 # image slider example
 http://idangero.us/swiper/#.WP1dL_l96pq
 
