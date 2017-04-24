@@ -1,3 +1,5 @@
+# image slider example
+http://idangero.us/swiper/#.WP1dL_l96pq
 
 # chrome install
 * wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
