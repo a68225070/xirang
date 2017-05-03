@@ -1,3 +1,5 @@
+# Angular small
+http://blog.mgechev.com/2016/06/26/tree-shaking-angular2-production-build-rollup-javascript/
 # Package asset search
 https://www.npmjs.com
 
