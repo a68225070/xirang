@@ -9,3 +9,4 @@ exec rsync -avz --exclude-from='./exclude.list' -e ssh ubuntu@115.159.161.35:~/$
 bbbb
 bbb\naaa\n
 cc
+sss
