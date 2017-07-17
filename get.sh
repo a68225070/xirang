@@ -8,3 +8,4 @@ echo "rsync -avz -e ssh ubuntu@www.naja.club:~/$fn ./"
 exec rsync -avz --exclude-from='./exclude.list' -e ssh ubuntu@115.159.161.35:~/$fn ./aaa
 bbbb
 bbb\naaa\n
+cc
