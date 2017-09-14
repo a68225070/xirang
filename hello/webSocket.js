@@ -57,11 +57,14 @@
                     }
 
                     adminApi.handle(request, apiSocket);
+					//_.defer(() => {
+		//				adminApi.handle(request, apiSocket);
+		//			});				
                 }
 
                 function broadcast(type, payload) {
                     wss.clients.forEach((client) => {
-						console.log("### server broadcast type=%s, payload=%j",type,payload);
+						//console.log("### server broadcast type=%s, payload=%j",type,payload);
                         client.send(JSON.stringify({
                             type,
                             payload
